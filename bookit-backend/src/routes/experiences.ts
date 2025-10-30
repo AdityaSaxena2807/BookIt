@@ -1,11 +1,12 @@
 import { Router } from 'express';
 import { PrismaClient } from '@prisma/client';
+import { Request, Response } from "express";
 
 const router = Router();
 const prisma = new PrismaClient();
 
 // GET /api/experiences - Get all experiences
-router.get('/', async (req, res) => {
+router.get('/', async (req: Request, res: Response) => {
   try {
     const { category, minPrice, maxPrice, search } = req.query;
 
@@ -42,7 +43,7 @@ router.get('/', async (req, res) => {
 });
 
 // GET /api/experiences/:id - Get single experience with slots
-router.get('/:id', async (req, res) => {
+router.get('/:id', async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 

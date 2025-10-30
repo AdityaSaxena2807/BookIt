@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { PrismaClient } from '@prisma/client';
 import { z } from 'zod';
+import { Request, Response } from "express";
 
 const router = Router();
 const prisma = new PrismaClient();
@@ -12,7 +13,7 @@ const validatePromoSchema = z.object({
 });
 
 // POST /api/promo/validate - Validate promo code
-router.post('/validate', async (req, res) => {
+router.post('/validate', async (req: Request, res: Response) => {
   try {
     const validatedData = validatePromoSchema.parse(req.body);
     const { code, amount } = validatedData;

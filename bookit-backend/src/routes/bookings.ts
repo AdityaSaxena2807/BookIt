@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { PrismaClient } from '@prisma/client';
 import { z } from 'zod';
+import { Request, Response } from "express";
 
 const router = Router();
 const prisma = new PrismaClient();
@@ -17,7 +18,7 @@ const bookingSchema = z.object({
 });
 
 // POST /api/bookings - Create a new booking
-router.post('/', async (req, res) => {
+router.post('/', async (req: Request, res: Response) => {
   try {
     // Validate request body
     const validatedData = bookingSchema.parse(req.body);
@@ -152,7 +153,7 @@ router.post('/', async (req, res) => {
 });
 
 // GET /api/bookings/:id - Get booking details
-router.get('/:id', async (req, res) => {
+router.get('/:id', async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
