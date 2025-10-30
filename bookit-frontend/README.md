@@ -299,26 +299,3 @@ npm run dev
 1. Check backend is seeded with promo codes
 2. Verify minimum amount requirements
 3. Check promo code spelling (case-sensitive)
-
-## 🔧 Development Tips
-
-### Hot Module Replacement (HMR)
-Vite provides instant HMR. Changes appear immediately without full page reload.
-
-### TypeScript
-All components are fully typed. Use TypeScript for better DX and fewer bugs.
-
-### Tailwind IntelliSense
-Install Tailwind CSS IntelliSense extension in VS Code for autocomplete.
-
-## 📄 License
-
-MIT
-
-## 🙋 Support
-
-For issues or questions:
-1. Check this README
-2. Review backend API documentation
-3. Check browser console for errors
-4. Verify backend is running and accessible
