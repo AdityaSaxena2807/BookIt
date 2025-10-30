@@ -1,0 +1,87 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Experience {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  location    String
+  category    String
+  price       Float
+  duration    String
+  image       String
+  rating      Float    @default(5.0)
+  reviewCount Int      @default(0)
+  highlights  String[] // Array of highlights
+  included    String[] // What's included
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  slots    Slot[]
+  bookings Booking[]
+
+  @@map("experiences")
+}
+
+model Slot {
+  id           String   @id @default(uuid())
+  experienceId String
+  date         DateTime
+  startTime    String
+  endTime      String
+  capacity     Int
+  booked       Int      @default(0)
+  price        Float
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  experience Experience @relation(fields: [experienceId], references: [id], onDelete: Cascade)
+  bookings   Booking[]
+
+  @@map("slots")
+}
+
+model Booking {
+  id           String   @id @default(uuid())
+  experienceId String
+  slotId       String
+  name         String
+  email        String
+  phone        String
+  guests       Int
+  totalPrice   Float
+  promoCode    String?
+  discount     Float    @default(0)
+  status       String   @default("confirmed") // confirmed, cancelled
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  experience Experience @relation(fields: [experienceId], references: [id])
+  slot       Slot       @relation(fields: [slotId], references: [id])
+
+  @@map("bookings")
+}
+
+model PromoCode {
+  id          String   @id @default(uuid())
+  code        String   @unique
+  type        String // percentage, flat
+  value       Float
+  minAmount   Float    @default(0)
+  maxDiscount Float?
+  isActive    Boolean  @default(true)
+  expiresAt   DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("promo_codes")
+}
