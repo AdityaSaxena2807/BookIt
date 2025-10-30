@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { format, parseISO } from 'date-fns';
 import {
   CheckCircle,
@@ -18,7 +18,6 @@ import { getBookingById } from '../services/api';
 
 export default function ResultPage() {
   const { bookingId } = useParams<{ bookingId: string }>();
-  const navigate = useNavigate();
   const [booking, setBooking] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
