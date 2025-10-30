@@ -266,17 +266,6 @@ See `prisma/schema.prisma` for detailed schema.
    npm run prisma:push && npm run prisma:seed
    ```
 
-### Deploy to Railway
-
-1. Create new project on Railway
-2. Add PostgreSQL database
-3. Deploy from GitHub
-4. Add environment variables
-5. Configure build:
-   - Build Command: `npm install && npm run prisma:generate && npm run build`
-   - Start Command: `npm start`
-6. Run migrations and seed through Railway CLI
-
 ## 🧪 Testing
 
 Test the API using the provided endpoints:
@@ -339,11 +328,3 @@ If port 5000 is busy:
    # Kill process
    kill -9 <PID>
    ```
-
-## 📄 License
-
-MIT
-
-## 👥 Support
-
-For issues or questions, please create an issue in the GitHub repository.
