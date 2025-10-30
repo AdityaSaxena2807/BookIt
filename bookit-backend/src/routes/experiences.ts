@@ -67,7 +67,7 @@ router.get('/:id', async (req: Request, res: Response) => {
 
     // Group slots by date
     const slotsByDate: Record<string, any[]> = {};
-    experience.slots.forEach((slot) => {
+    experience.slots.forEach((slot: any) => {
       const dateKey = slot.date.toISOString().split('T')[0];
       if (!slotsByDate[dateKey]) {
         slotsByDate[dateKey] = [];

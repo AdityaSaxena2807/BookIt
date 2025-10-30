@@ -91,6 +91,7 @@ router.post('/', async (req: Request, res: Response) => {
 
     // Create booking and update slot in a transaction
     const booking = await prisma.$transaction(async (tx) => {
+
       // Update slot booked count
       await tx.slot.update({
         where: { id: slotId },
